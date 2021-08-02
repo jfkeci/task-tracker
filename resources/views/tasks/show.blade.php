@@ -9,7 +9,7 @@
     <div class="col-md-12">
         <h1>{{ $task->title }}</h1>
         <p>Category: <a
-                href="category/{{ $task->category_id }}">{{ App\Models\Category::find($task->category_id)->name }}</a>
+                href="/categories/{{ $task->category_id }}">{{ App\Models\Category::find($task->category_id)->name }}</a>
         </p>
         <hr>
         <small>Created: {{ $task->created_at }}</small>
@@ -23,31 +23,5 @@
     {!! Form::close() !!}
 
     <hr>
-
-    {{-- @if (count($notes) > 0)
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Notes by Category: {{ $category->name }}</div>
-
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-
-                            <a href="/notes/create" class="btn btn-primary">Create Note</a>
-                            <hr>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @else
-        <h3>No notes found for this category</h3>
-    @endif --}}
-
 
 @endsection
