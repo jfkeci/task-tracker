@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,10 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = DB::select('SELECT * FROM categories WHERE user_id = ' . auth()->user()->id);
+        $user = User::find(auth()->user()->id);
+
+        $categories = $user->categories;
+
         return view('categories.index')->with('categories', $categories);
     }
 

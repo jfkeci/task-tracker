@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Task;
+use App\Models\Category;
 
 class User extends Authenticatable
 {
@@ -43,11 +45,11 @@ class User extends Authenticatable
 
     public function tasks()
     {
-        return $this->hasMany('App\Model\Task');
+        return $this->hasMany('App\Models\Task');
     }
 
     public function categories()
     {
-        return $this->hasMany('App\Model\Category');
+        return $this->hasMany('App\Models\Category');
     }
 }

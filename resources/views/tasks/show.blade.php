@@ -7,14 +7,14 @@
     <br>
     <br>
     <div class="col-md-12">
-        <h1>{{ $category->title }}</h1>
+        <h1>{{ $task->title }}</h1>
         <hr>
-        <small>Created: {{ $category->created_at }}</small>
+        <small>Created: {{ $task->created_at }}</small>
     </div>
     <hr>
 
-    <a href="/categories/{{ $category->id }}/edit" class="btn btn-default"> Edit </a>
-    {!! Form::open(['action' => ['App\Http\Controllers\CategoriesController@destroy', $category->id], 'method' => 'POST', 'class' => 'pull-right']) !!}
+    <a href="/tasks/{{ $task->id }}/edit" class="btn btn-default"> Edit </a>
+    {!! Form::open(['action' => ['App\Http\Controllers\TasksController@destroy', $task->id], 'method' => 'POST', 'class' => 'pull-right']) !!}
     {{ Form::hidden('_method', 'DELETE') }}
     {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
     {!! Form::close() !!}
