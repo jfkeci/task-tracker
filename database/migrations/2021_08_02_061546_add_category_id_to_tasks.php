@@ -14,7 +14,7 @@ class AddCategoryIdToTasks extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            //
+            $table->integer('category_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddCategoryIdToTasks extends Migration
     public function down()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            //
+            $table->dropColumn('category_id');
         });
     }
 }
