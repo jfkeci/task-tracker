@@ -8,7 +8,6 @@
     <br>
     <div class="col-md-12">
         <h1>{{ $category->name }}</h1>
-        <hr>
         <small>Created: {{ $category->created_at }}</small>
     </div>
     <hr>
@@ -22,28 +21,26 @@
     <hr>
 
     @if (count($tasks) > 0)
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Tasks by Category: {{ $category->name }}</div>
-
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-
-                            <a href="/tasks/create" class="btn btn-primary">Create Task</a>
-                            <hr>
+        <h1>Tasks in this category</h1>
+        <div class="card">
+            <ul class="list-group list-group-flash">
+                @foreach ($tasks as $task)
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="/tasks/{{ $task->id }}">
+                                    <h3>{{ $task->title }}</h3>
+                                </a>
+                                <small>{{ $task->date_time }}</small>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     @else
-        <h3>No tasks found for this category</h3>
+        <h3>No tasks</h3>
+        <a href="/tasks/create" class="btn btn-primary">Create task</a>
     @endif
 
 
