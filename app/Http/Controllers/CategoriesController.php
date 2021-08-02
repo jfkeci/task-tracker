@@ -2,10 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +26,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = DB::select('SELECT * FROM categories WHERE user_id = ' . auth()->user()->id);
+        return view('categories.index')->with('categories', $categories);
     }
 
     /**
@@ -23,7 +37,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -34,7 +48,18 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'category' => 'required'
+        ]);
+
+        $category = new Category;
+
+        $category->name = $request->input('category');
+        $category->user_id = auth()->user()->id;
+
+        $category->save();
+
+        return redirect('/categories')->with('success', 'Category saved');
     }
 
     /**
@@ -56,7 +81,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.edit')->with('category', $category);
     }
 
     /**

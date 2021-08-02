@@ -3,9 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Task;
 
 class TasksController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +35,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -56,7 +68,8 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = Task::find($id);
+        return view('tasks.edit')->with('task', $task);
     }
 
     /**
