@@ -75,7 +75,14 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
-        return view('categories.show')->with('category', $category);
+        $tasks = DB::select('SELECT * FROM tasks WHERE category_id = ' . $category->id . ' AND user_id = ' . auth()->user()->id);
+
+        $data = array(
+            'category' => $category,
+            'tasks' => $tasks
+        );
+
+        return view('categories.show')->with($data);
     }
 
     /**
@@ -121,7 +128,8 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+        DB::delete('DELETE FROM tasks WHERE category_id = ' . $category->id);
         $category->delete();
-        return redirect('/categories')->with('success', 'Category removed');
+        return redirect('/categories')->with('success', 'Category removed with all tasks from category');
     }
 }

@@ -91,7 +91,14 @@ class TasksController extends Controller
     public function edit($id)
     {
         $task = Task::find($id);
-        return view('tasks.edit')->with('task', $task);
+        $categories = User::find(auth()->user()->id)->categories;
+
+        $data = array(
+            'task' => $task,
+            'categories' => $categories
+        );
+
+        return view('tasks.edit')->with($data);
     }
 
     /**

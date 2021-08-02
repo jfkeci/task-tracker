@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Tasks</h1>
+
 
     @if (count($tasks) > 0)
+        <h1>Tasks</h1>
         <div class="card">
             <ul class="list-group list-group-flash">
                 @foreach ($tasks as $task)
@@ -20,5 +21,8 @@
                 @endforeach
             </ul>
         </div>
+    @else
+        <h3>No tasks</h3>
+        <a href="/tasks/create" class="btn btn-primary">Create task</a>
     @endif
 @endsection

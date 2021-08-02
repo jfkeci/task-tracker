@@ -20,5 +20,8 @@
                 @endforeach
             </ul>
         </div>
+    @else
+        <h3>No categories</h3>
+        <a href="/categories/create" class="btn btn-primary">Create category</a>
     @endif
 @endsection

@@ -21,12 +21,12 @@
 
     <hr>
 
-    {{-- @if (count($notes) > 0)
+    @if (count($tasks) > 0)
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Notes by Category: {{ $category->name }}</div>
+                        <div class="card-header">Tasks by Category: {{ $category->name }}</div>
 
                         <div class="card-body">
                             @if (session('status'))
@@ -35,7 +35,7 @@
                                 </div>
                             @endif
 
-                            <a href="/notes/create" class="btn btn-primary">Create Note</a>
+                            <a href="/tasks/create" class="btn btn-primary">Create Task</a>
                             <hr>
                         </div>
                     </div>
@@ -43,8 +43,8 @@
             </div>
         </div>
     @else
-        <h3>No notes found for this category</h3>
-    @endif --}}
+        <h3>No tasks found for this category</h3>
+    @endif
 
 
 @endsection

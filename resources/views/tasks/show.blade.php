@@ -8,6 +8,9 @@
     <br>
     <div class="col-md-12">
         <h1>{{ $task->title }}</h1>
+        <p>Category: <a
+                href="category/{{ $task->category_id }}">{{ App\Models\Category::find($task->category_id)->name }}</a>
+        </p>
         <hr>
         <small>Created: {{ $task->created_at }}</small>
     </div>

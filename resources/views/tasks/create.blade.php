@@ -6,33 +6,38 @@
 
     <hr>
 
-    {!! Form::open(['action' => 'App\Http\Controllers\TasksController@store', 'method' => 'POST']) !!}
 
-    <div class="form-group">
-        @if (count($categories) > 0)
+
+
+    @if (count($categories) > 0)
+        {!! Form::open(['action' => 'App\Http\Controllers\TasksController@store', 'method' => 'POST']) !!}
+        <div class="form-group">
             <select name="category" id="category" class="form-select form-select-lg mb-3">
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-        @else
-            <h3>No categories</h3>
-            <a href="/categories/create" class="btn btn-primary">Create category</a>
-        @endif
+        </div>
+        <div class="form-group">
+            {{ Form::label('title', 'Title') }}
+            {{ Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Task']) }}
+        </div>
 
-    </div>
+        <input type="date" name="date_time" id="date_time">
 
-    <div class="form-group">
-        {{ Form::label('title', 'Title') }}
-        {{ Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Task']) }}
-    </div>
+        {{ Form::submit('Add', ['class' => 'btn btn-primary']) }}
 
-    <input type="date" name="date_time" id="date_time">
+        {!! Form::close() !!}
 
-    {{ Form::submit('Add', ['class' => 'btn btn-primary']) }}
+        <hr>
+    @else
+        <h3>No categories</h3>
+        <p>Create a category to create a task</p>
+        <a href="/categories/create" class="btn btn-primary">Create category</a>
+    @endif
 
-    {!! Form::close() !!}
 
-    <hr>
+
+
 
 @endsection
