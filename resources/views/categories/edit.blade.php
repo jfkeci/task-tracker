@@ -1,22 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+    <h1>Edit Category</h1>
 
-    <h1>New Task</h1>
-
-    <hr>
-
-    {!! Form::open(['action' => 'App\Http\Controllers\TasksController@store', 'method' => 'POST']) !!}
+    {!! Form::open(['action' => ['App\Http\Controllers\CategoriesController@update', $category->id], 'method' => 'POST']) !!}
 
     <div class="form-group">
-        {{ Form::label('task', 'Task') }}
-        {{ Form::text('task', '', ['class' => 'form-control', 'placeholder' => 'Task']) }}
+        {{ Form::label('category', 'Category') }}
+        {{ Form::text('category', $category->name, ['class' => 'form-control', 'placeholder' => 'Category']) }}
     </div>
 
-    {{ Form::submit('Add', ['class' => 'btn btn-primary']) }}
+    {{ Form::hidden('_method', 'PUT') }}
+
+    {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
 
     {!! Form::close() !!}
-
-    <hr>
 
 @endsection
