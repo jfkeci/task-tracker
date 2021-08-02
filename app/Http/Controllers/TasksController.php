@@ -110,7 +110,19 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        $task = Task::find($id);
+
+        $task->title = $request->input('title');
+        $task->date_time = $request->input('date_time');
+        $task->category_id = $request->input('category');
+
+        $task->save();
+
+        return redirect('/tasks')->with('success', 'Task updated');
     }
 
     /**
